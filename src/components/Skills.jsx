@@ -1,18 +1,4 @@
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaGithub } from "react-icons/fa";
-import { SiTailwindcss, SiVite } from "react-icons/si";
-
-const skills = [
-  { name: "React", icon: <FaReact size={24} />, color: "text-blue-400" },
-  { name: "Tailwind CSS", icon: <SiTailwindcss size={24} />, color: "text-teal-400" },
-  { name: "JavaScript", icon: <FaJs size={24} />, color: "text-yellow-400" },
-  { name: "Vite", icon: <SiVite size={24} />, color: "text-purple-500" },
-  { name: "Node.js", icon: <FaNodeJs size={24} />, color: "text-green-500" },
-  { name: "HTML", icon: <FaHtml5 size={24} />, color: "text-orange-500" },
-  { name: "CSS", icon: <FaCss3Alt size={24} />, color: "text-blue-600" },
-  { name: "GitHub", icon: <FaGithub size={24} />, color: "text-gray-300" },
-];
-
-export default function Skills() {
+export default function Skills({ skillCategories }) {
   return (
     <section
       id="skills"
@@ -31,17 +17,43 @@ export default function Skills() {
         }
       `}</style>
 
-      <div className="flex flex-wrap gap-6 justify-center">
-        {skills.map((skill, index) => (
-          <div
-            key={skill.name}
-            className={`flex items-center gap-2 px-4 py-3 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 animate-float ${skill.color}`}
-            style={{ animationDelay: `${index * 0.2}s` }}
-          >
-            <div className="text-2xl">
-              {skill.icon}
+      {/* Skills Categories Mapping */}
+      <div className="space-y-12">
+        {skillCategories.map((category, categoryIndex) => (
+          <div key={`category-${category.category}-${categoryIndex}`} className="mb-8">
+            <h3 className="text-2xl font-semibold mb-6 text-center text-purple-400">
+              {category.category}
+            </h3>
+            
+            <div className="flex flex-wrap gap-6 justify-center">
+              {category.skills.map((skill, skillIndex) => (
+                <div
+                  key={`skill-${skill.name}-${skillIndex}`}
+                  className={`flex flex-col items-center gap-2 px-4 py-3 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 animate-float ${skill.color}`}
+                  style={{ animationDelay: `${(categoryIndex * category.skills.length + skillIndex) * 0.1}s` }}
+                >
+                  <div className="text-2xl">
+                    {skill.icon}
+                  </div>
+                  <span className="font-semibold text-center">{skill.name}</span>
+                  
+                  {/* Skill Level Bar */}
+                  {skill.level && (
+                    <div className="w-16 bg-gray-700 rounded-full h-2 mt-1">
+                      <div 
+                        className={`h-2 rounded-full transition-all duration-1000 ${skill.color.replace('text-', 'bg-')}`}
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
+                    </div>
+                  )}
+                  
+                  {/* Skill Level Percentage */}
+                  {skill.level && (
+                    <span className="text-xs text-gray-400">{skill.level}%</span>
+                  )}
+                </div>
+              ))}
             </div>
-            <span className="ml-2 font-semibold">{skill.name}</span>
           </div>
         ))}
       </div>

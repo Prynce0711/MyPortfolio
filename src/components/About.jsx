@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function About() {
+export default function About({ aboutText, name }) {
   const textRef = useRef(null);
   const imageRef = useRef(null);
   const [textVisible, setTextVisible] = useState(false);
   const [imageVisible, setImageVisible] = useState(false);
 
   // Typing effect state
-  const fullText = `I'm a BSIT student with a strong passion for web development and modern technologies. I enjoy learning and building responsive, user-friendly, and efficient web applications using tools like React and Tailwind CSS. My goal is to turn ideas into functional and visually appealing digital experiences, while continuously improving my skills in programming, problem-solving, and software development.`;
+  const fullText = aboutText;
   const [typedText, setTypedText] = useState("");
 
   // Typing effect
@@ -22,7 +22,7 @@ export default function About() {
     }, 50); // typing speed in ms
 
     return () => clearInterval(typingInterval); // cleanup on unmount
-  }, []);
+  }, [fullText]);
   // IntersectionObserver for scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +51,7 @@ export default function About() {
 
   // Code lines for background scroll
   const codeLines = [
-    "const portfolio = 'Prynce';",
+    `const portfolio = '${name}';`,
     "function greet() { console.log('Hi, I am a Frontend Developer'); }",
     "const skills = ['React', 'Tailwind CSS', 'JavaScript', 'Node.js'];",
     "const projects = ['Portfolio', 'Todo App', 'Blog Platform'];",
