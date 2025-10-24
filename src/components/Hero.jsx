@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import DP_FB from "../assets/images/DP_FB.jpg"; // Make sure file exists here
 
+
 export default function Hero() {
   const textRef = useRef(null);
   const imageRef = useRef(null);
@@ -70,6 +71,7 @@ export default function Hero() {
           <p className="mb-6 text-gray-700 dark:text-gray-300">
             Bachelor of Science in Information Technology Student   
           </p>
+
 
           <a
             href="#projects"

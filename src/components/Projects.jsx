@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { FaReact, FaNodeJs, FaDatabase, FaCloudSun } from "react-icons/fa";
 
 const projects = [
@@ -38,7 +38,7 @@ export default function Projects() {
       <h2 className="text-4xl font-bold mb-16 text-center">Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project, index) => (
-          <motion.div
+          <Motion.div
             key={project.name}
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function Projects() {
 
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 rounded-3xl transition-all duration-500"></div>
-          </motion.div>
+          </Motion.div>
         ))}
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { FaMoon, FaSun } from "react-icons/fa";
+import VerseOfDay from "./api";
 
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,19 +17,17 @@ export default function Navbar() {
   return (
     <nav className="fixed w-full z-50 backdrop-blur-md bg-white/20 dark:bg-gray-900/20 shadow-lg p-4 flex justify-between items-center">
       {/* Logo */}
-      <motion.h1 
+      <Motion.h1
         className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-      >
-        Prynce
-      </motion.h1>
+      ></Motion.h1>
 
       {/* Links */}
       <ul className="flex gap-8">
         {["about", "skills", "projects", "contact"].map((link) => (
-          <motion.li
+          <Motion.li
             key={link}
             className="capitalize cursor-pointer text-gray-900 dark:text-white relative group"
             whileHover={{ y: -2, scale: 1.1 }}
@@ -40,19 +39,24 @@ export default function Navbar() {
             >
               {link}
             </a>
-          </motion.li>
+          </Motion.li>
         ))}
       </ul>
 
+      {/* Verse of the Day fetched from Bible API */}
+      <div className="mb-4">
+        <VerseOfDay />
+      </div>
+
       {/* Dark/Light Toggle with Morph Animation */}
-      <motion.button
+      <Motion.button
         onClick={() => setDarkMode(!darkMode)}
         className="ml-4 p-3 rounded-full border border-gray-300 dark:border-gray-600 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 shadow-lg text-white flex items-center justify-center overflow-hidden"
         whileTap={{ scale: 0.9 }}
       >
         <AnimatePresence mode="wait">
           {darkMode ? (
-            <motion.div
+            <Motion.div
               key="sun"
               initial={{ rotate: -90, opacity: 0, scale: 0 }}
               animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -60,9 +64,9 @@ export default function Navbar() {
               transition={{ duration: 0.5 }}
             >
               <FaSun className="w-5 h-5 text-yellow-400" />
-            </motion.div>
+            </Motion.div>
           ) : (
-            <motion.div
+            <Motion.div
               key="moon"
               initial={{ rotate: 90, opacity: 0, scale: 0 }}
               animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -70,10 +74,10 @@ export default function Navbar() {
               transition={{ duration: 0.5 }}
             >
               <FaMoon className="w-5 h-5 text-gray-100" />
-            </motion.div>
+            </Motion.div>
           )}
         </AnimatePresence>
-      </motion.button>
+      </Motion.button>
     </nav>
   );
 }
