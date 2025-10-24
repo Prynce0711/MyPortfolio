@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { FaMoon, FaSun } from "react-icons/fa";
-import VerseOfDay from "./api";
+
+
 
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
@@ -43,10 +44,7 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* Verse of the Day fetched from Bible API */}
-      <div className="mb-4">
-        <VerseOfDay />
-      </div>
+      
 
       {/* Dark/Light Toggle with Morph Animation */}
       <Motion.button
