@@ -27,5 +27,3 @@ dist-ssr
 .env
 .env.local
 
-# optionally stop tracking a local-only api file
-/src/components/api.jsx
