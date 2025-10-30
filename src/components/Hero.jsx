@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import DP_FB from "../assets/images/DP_FB.jpg"; // Make sure file exists here
 import ApiNavbar from "./api.jsx";
 
-export default function Hero() {
+export default function Hero({ personalInfo }) {
   const textRef = useRef(null);
   const imageRef = useRef(null);
   const [textVisible, setTextVisible] = useState(false);
@@ -53,8 +53,8 @@ export default function Hero() {
           }`}
         >
           <img
-            src={DP_FB}
-            alt="Prynce"
+            src={personalInfo.image}
+            alt={personalInfo.name}
             className="rounded-full border-8 border-blue-600 dark:border-blue-400 object-cover w-full h-full shadow-2xl transform transition hover:scale-105"
           />
         </div>
@@ -69,11 +69,11 @@ export default function Hero() {
           } hover:scale-105`}
         >
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
-            Hi, I'm Prynce Carlo Clemente
+            Hi, I'm {personalInfo.name}
           </h1>
 
           <p className="mb-6 text-gray-700 dark:text-gray-300">
-            Bachelor of Science in Information Technology Student
+            {personalInfo.title}   
           </p>
 
           <a

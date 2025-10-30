@@ -16,7 +16,7 @@ export default function Navbar() {
   }, [darkMode]);
 
   return (
-    <nav className="fixed w-full z-50 backdrop-blur-md bg-white/20 dark:bg-gray-900/20 shadow-lg p-4 flex justify-between items-center">
+    <nav className="fixed w-full z-50 backdrop-blur-md bg-white/20 shadow-lg p-4 flex justify-between items-center">
       {/* Logo */}
       <Motion.h1
         className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
@@ -35,10 +35,10 @@ export default function Navbar() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <a
-              href={`#${link}`}
+              href={typeof item === 'object' ? item.href : `#${item}`}
               className="px-2 py-1 rounded-md text-sm font-medium hover:bg-gradient-to-r hover:from-blue-400 hover:via-purple-400 hover:to-pink-500 hover:text-white transition-all duration-300"
             >
-              {link}
+              {typeof item === 'object' ? item.label : item}
             </a>
           </Motion.li>
         ))}
