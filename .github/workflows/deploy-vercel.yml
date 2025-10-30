@@ -7,7 +7,20 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # Make Vercel secrets available to all steps in this job and provide
+    # a clear validation step if any are missing.
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
     steps:
+      - name: Validate Vercel secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "ERROR: VERCEL_TOKEN is not set as a repository secret"; exit 1; fi
+          if [ -z "$VERCEL_ORG_ID" ]; then echo "ERROR: VERCEL_ORG_ID is not set as a repository secret"; exit 1; fi
+          if [ -z "$VERCEL_PROJECT_ID" ]; then echo "ERROR: VERCEL_PROJECT_ID is not set as a repository secret"; exit 1; fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -23,11 +36,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to Vercel (Preview for branch)
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           # Use npx to run the vercel CLI without globally installing it.
           # For branch deployments (previews) do NOT pass --prod.
+          # The token and project scope are provided via job-level env vars.
           npx vercel --token "$VERCEL_TOKEN" --confirm --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
