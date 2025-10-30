@@ -7,21 +7,21 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # Make Vercel secrets available to all steps in this job and provide
+    # Make Vercel & GitHub tokens available to all steps in this job and provide
     # a clear validation step if any are missing.
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      GITHUB_TOKEN: ${{ secrets.portfolio }}
-      
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - name: Validate Vercel secrets
+      - name: Validate Vercel & GitHub secrets
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then echo "ERROR: VERCEL_TOKEN is not set as a repository secret"; exit 1; fi
           if [ -z "$VERCEL_ORG_ID" ]; then echo "ERROR: VERCEL_ORG_ID is not set as a repository secret"; exit 1; fi
           if [ -z "$VERCEL_PROJECT_ID" ]; then echo "ERROR: VERCEL_PROJECT_ID is not set as a repository secret"; exit 1; fi
+          if [ -z "$GITHUB_TOKEN" ]; then echo "ERROR: GITHUB_TOKEN is not available (ensure Actions permissions are enabled)"; exit 1; fi
 
       - name: Checkout repository
         uses: actions/checkout@v4
