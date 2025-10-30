@@ -61,7 +61,7 @@ export default function About({ aboutText, name }) {
   return (
     <section
       id="about"
-      className="relative p-10 bg-gray-900 text-green-400 font-mono overflow-hidden"
+      className="relative p-6 sm:p-10 bg-gray-900 text-green-400 font-mono overflow-hidden"
     >
       {/* Inline scroll animation */}
       <style>{`
@@ -100,11 +100,11 @@ export default function About({ aboutText, name }) {
         About Me
       </h2>
 
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+  <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center gap-6">
         {/* Image */}
         <div
           ref={imageRef}
-          className={`flex-shrink-0 w-full md:w-1/3 transition-all duration-1000 ease-out ${
+          className={`flex-shrink-0 w-full sm:w-2/3 md:w-1/3 max-w-sm transition-all duration-1000 ease-out ${
             imageVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 -translate-x-10"
@@ -116,7 +116,7 @@ export default function About({ aboutText, name }) {
         {/* Typing text */}
         <div
           ref={textRef}
-          className={`w-full md:w-2/3 bg-gray-900 bg-opacity-80 rounded-3xl p-8 shadow-xl transform transition-all duration-1000 ease-out ${
+          className={`w-full md:w-2/3 bg-gray-900 bg-opacity-80 rounded-3xl p-4 sm:p-8 shadow-xl transform transition-all duration-1000 ease-out ${
             textVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 translate-x-10"
