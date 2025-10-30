@@ -40,11 +40,11 @@ export default function Hero({ personalInfo }) {
       <div className="absolute bottom-20 right-10 w-48 h-48 bg-pink-400 rounded-full opacity-20 animate-pulse dark:bg-indigo-700"></div>
       <div className="absolute top-1/2 right-20 w-24 h-24 bg-purple-300 rounded-full opacity-20 animate-bounce dark:bg-blue-700"></div>
 
-      <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl w-full gap-10 z-10">
+  <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl w-full gap-8 z-10 px-4 sm:px-6">
         {/* Circular Image on the left */}
         <div
           ref={imageRef}
-          className={`w-48 h-48 md:w-64 md:h-64 flex-shrink-0 transition-all duration-1000 ease-out ${
+          className={`w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 flex-shrink-0 transition-all duration-1000 ease-out ${
             imageVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           }`}
         >
@@ -58,7 +58,7 @@ export default function Hero({ personalInfo }) {
         {/* Text / Card on the right */}
         <div
           ref={textRef}
-          className={`w-full md:w-1/2 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl p-10 text-center md:text-left transition-all duration-1000 ease-out transform ${
+          className={`w-full md:w-1/2 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl p-6 md:p-10 text-center md:text-left transition-all duration-1000 ease-out transform ${
             textVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           } hover:scale-105`}
         >

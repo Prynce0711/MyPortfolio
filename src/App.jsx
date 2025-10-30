@@ -17,7 +17,7 @@ import { GoDot } from "react-icons/go";
 export default function App() {
   // Personal Information Data
   const personalInfo = {
-    name: "Prynceeee Carloooooo Clemente",
+    name: "Prynce Carlo Clemente",
     title: "Bachelor of Science in Information Technology Student",
     image: DP_FB,
     aboutText: `I'm a BSIT student with a strong passion for web development and modern technologies. I enjoy learning and building responsive, user-friendly, and efficient web applications using tools like React and Tailwind CSS. My goal is to turn ideas into functional and visually appealing digital experiences, while continuously improving my skills in programming, problem-solving, and software development.`
@@ -185,7 +185,7 @@ export default function App() {
       </div>
 
       {/* Glassmorphic wrapper */}
-      <div className="relative z-10 backdrop-blur-md bg-black/40 min-h-screen border border-gray-700">
+  <div className="relative z-10 backdrop-blur-md bg-black/40 min-h-screen border border-gray-700 pt-20">
         {/* Navbar */}
         <Navbar 
           brandName={brandName}
