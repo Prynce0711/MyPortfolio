@@ -36,8 +36,12 @@ jobs:
         run: npm run build
 
       - name: Deploy to Vercel (Preview for branch)
-        run: |
-          # Use npx to run the vercel CLI without globally installing it.
-          # For branch deployments (previews) do NOT pass --prod.
-          # The token and project scope are provided via job-level env vars.
-          npx vercel --token "$VERCEL_TOKEN" --confirm --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          # Do not pass --prod so this remains a preview deployment for the branch
+          vercel-args: ""
+          working-directory: .
