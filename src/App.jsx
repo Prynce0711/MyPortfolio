@@ -164,7 +164,7 @@ export default function App() {
     <div className="relative scroll-smooth min-h-screen text-white overflow-x-hidden bg-gray-900">
 
       {/* Moving diagonal streaks - Enhanced mapping */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+  <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden">
         {Array.from({ length: 30 }).map((_, i) => {
           const randomTop = -50 + Math.random() * 100;
           const randomLeft = Math.random() * 100;
@@ -194,6 +194,7 @@ export default function App() {
           brandName={brandName}
           navigationItems={navigationItems}
         />
+       
         
         {/* Portfolio Sections Mapping */}
         {portfolioSections.map((section, index) => {

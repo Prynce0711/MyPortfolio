@@ -8,7 +8,7 @@ function TiltCard({ exp, index }) {
       transition={{ duration: 0.6, delay: index * 0.2 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95, rotate: -2 }}
-      className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black border border-gray-700 w-80 p-6 rounded-2xl shadow-xl flex-shrink-0 hover:shadow-blue-500/30 transition-transform"
+  className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black border border-gray-700 w-64 sm:w-80 p-5 sm:p-6 rounded-2xl shadow-xl flex-shrink-0 hover:shadow-blue-500/30 transition-transform"
     >
       <h3 className="text-2xl font-semibold text-blue-400">{exp.role}</h3>
       <p className="text-sm text-gray-400 mb-3">
@@ -55,7 +55,7 @@ export default function Experience({ experiences = [] }) {
   const experienceList = experiences.length > 0 ? experiences : defaultExperiences;
   
   return (
-    <section id="experience" className="relative min-h-[auto] flex items-center justify-center text-white py-12 px-4 sm:py-16 sm:px-6 overflow-hidden">
+    <section id="experience" className="relative min-h-[auto] flex items-center justify-center text-white py-10 px-3 sm:py-12 sm:px-6 overflow-hidden">
       {/* 🔥 Animated Dark Gradient Background */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950"
@@ -74,9 +74,9 @@ export default function Experience({ experiences = [] }) {
           Work Experience
         </motion.h2>
 
-        {/* Cards: horizontally scrollable on small screens, static grid on larger screens */}
-        <div className="w-full overflow-x-auto py-4">
-          <div className="flex gap-6 items-stretch">
+        {/* Cards: horizontally scrollable on small screens, arranged in grid on larger screens */}
+        <div className="w-full">
+          <div className="flex gap-6 items-stretch overflow-x-auto py-4 px-2 sm:px-0">
             {experienceList.map((exp, index) => (
               <TiltCard key={index} exp={exp} index={index} />
             ))}
@@ -86,3 +86,5 @@ export default function Experience({ experiences = [] }) {
     </section>
   );
 }
+
+/* Adjust card width for small screens inside this file to avoid overflow */

@@ -4,10 +4,10 @@ export default function Projects({ projects }) {
   return (
     <section
       id="projects"
-      className="p-10 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white"
+      className="p-6 sm:p-10 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white"
     >
-      <h2 className="text-4xl font-bold mb-16 text-center">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-16 text-center">Projects</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projects.map((project, index) => (
           <motion.div
             key={project.name}
@@ -49,12 +49,13 @@ export default function Projects({ projects }) {
               <div>
                 {/* Project Image */}
                 {project.image && (
-                  <div className="mb-4 rounded-xl overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-40 md:h-48 lg:h-56 object-cover transform transition-all duration-500 group-hover:scale-110"
-                    />
+                    <div className="mb-4 rounded-xl overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-32 sm:h-40 md:h-48 lg:h-56 object-cover transform transition-all duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
                   </div>
                 )}
                 
