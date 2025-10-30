@@ -1,11 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 import VerseOfTheDay from "./VerseOfTheDay";
+import * as THREE from "three";
+import WAVES from "vanta/dist/vanta.waves.min";
 
 export default function Hero({ personalInfo }) {
   const textRef = useRef(null);
   const imageRef = useRef(null);
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
   const [textVisible, setTextVisible] = useState(false);
   const [imageVisible, setImageVisible] = useState(false);
+
+  // Vanta background effect
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        WAVES({
+          el: vantaRef.current,
+          THREE,
+          mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x14141d,
+  shininess: 17.00,
+  waveHeight: 12.00,
+  waveSpeed: 0.75,
+  zoom: 0.66
+        })
+      );
+    }
+
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
   // Scroll / load animations
   useEffect(() => {
@@ -33,6 +65,7 @@ export default function Hero({ personalInfo }) {
 
   return (
     <section
+      ref={vantaRef} // 👈 attach Vanta here
       id="hero"
       aria-label="Hero"
       className="relative min-h-[72vh] md:min-h-screen flex items-center justify-center bg-black text-white px-4 sm:px-6 overflow-hidden"
@@ -113,4 +146,3 @@ export default function Hero({ personalInfo }) {
     </section>
   );
 }
-
