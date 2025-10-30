@@ -1,5 +1,4 @@
-import { motion as Motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaDatabase, FaCloudSun } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Projects({ projects }) {
   return (
@@ -10,7 +9,7 @@ export default function Projects({ projects }) {
       <h2 className="text-4xl font-bold mb-16 text-center">Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project, index) => (
-          <Motion.div
+          <motion.div
             key={project.name}
             initial={{ opacity: 0, y: 60 }}
             /* whileInView animation + its own transition (duration & delay) */
@@ -89,7 +88,7 @@ export default function Projects({ projects }) {
             </div>
 
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 rounded-3xl transition-all duration-500"></div>
-          </Motion.div>
+          </motion.div>
         ))}
       </div>
     </section>

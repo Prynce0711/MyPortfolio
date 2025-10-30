@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import DP_FB from "../assets/images/DP_FB.jpg"; // Make sure file exists here
-import ApiNavbar from "./api.jsx";
 
 export default function Hero({ personalInfo }) {
   const textRef = useRef(null);
@@ -35,7 +33,7 @@ export default function Hero({ personalInfo }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 px-6 overflow-hidden"
+      className="relative min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 px-6 overflow-hidden"
     >
       {/* Decorative floating circles */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full opacity-30 animate-pulse dark:bg-purple-700"></div>
@@ -47,9 +45,7 @@ export default function Hero({ personalInfo }) {
         <div
           ref={imageRef}
           className={`w-48 h-48 md:w-64 md:h-64 flex-shrink-0 transition-all duration-1000 ease-out ${
-            imageVisible
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-10"
+            imageVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           }`}
         >
           <img
@@ -63,9 +59,7 @@ export default function Hero({ personalInfo }) {
         <div
           ref={textRef}
           className={`w-full md:w-1/2 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl p-10 text-center md:text-left transition-all duration-1000 ease-out transform ${
-            textVisible
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 translate-x-10"
+            textVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           } hover:scale-105`}
         >
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
@@ -84,16 +78,7 @@ export default function Hero({ personalInfo }) {
           </a>
         </div>
       </div>
-
-
-      {/* Verse of the Day fetched from Bible API */}
-      <div className="mb-4 p-10 items-center">
-        <ApiNavbar />
-      </div>
-
-
-
-
     </section>
   );
 }
+
