@@ -53,7 +53,7 @@ export default function Projects({ projects }) {
                     <img
                       src={project.image}
                       alt={project.name}
-                      className="w-full h-48 object-cover transform transition-all duration-500 group-hover:scale-110"
+                      className="w-full h-40 md:h-48 lg:h-56 object-cover transform transition-all duration-500 group-hover:scale-110"
                     />
                   </div>
                 )}

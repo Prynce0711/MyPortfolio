@@ -1,0 +1,63 @@
+name: Deploy to Vercel (test branch)
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  statuses: write
+  deployments: write
+
+on:
+  push:
+    branches: ["test"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    # Make Vercel & GitHub tokens available to all steps in this job and provide
+    # a clear validation step if any are missing.
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      # Use the built-in GitHub Actions token for repo-scoped API calls
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Validate Vercel & GitHub secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "ERROR: VERCEL_TOKEN is not set as a repository secret"; exit 1; fi
+          if [ -z "$VERCEL_ORG_ID" ]; then echo "ERROR: VERCEL_ORG_ID is not set as a repository secret"; exit 1; fi
+          if [ -z "$VERCEL_PROJECT_ID" ]; then echo "ERROR: VERCEL_PROJECT_ID is not set as a repository secret"; exit 1; fi
+          if [ -z "$GITHUB_TOKEN" ]; then echo "ERROR: GITHUB_TOKEN is not available (ensure Actions permissions are enabled)"; exit 1; fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Vercel (Preview for branch)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ github.token }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          # Disable automatic GitHub commenting and GitHub deployment creation
+          # to avoid permission errors in environments where the Actions token
+          # is restricted (forks, limited repo settings, etc.). Set to true
+          # if you need the action to comment on PRs/commits.
+          github-comment: false
+          github-deployment: false
+          # Do not pass --prod so this remains a preview deployment for the branch
+          vercel-args: ""
+          working-directory: .

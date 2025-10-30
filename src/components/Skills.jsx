@@ -2,7 +2,7 @@ export default function Skills({ skillCategories }) {
   return (
     <section
       id="skills"
-      className="p-10 bg-gray-900 text-gray-100"
+      className="p-6 sm:p-10 bg-gray-900 text-gray-100"
     >
       <h2 className="text-4xl font-bold mb-10 text-center">Skills</h2>
 
@@ -25,11 +25,11 @@ export default function Skills({ skillCategories }) {
               {category.category}
             </h3>
             
-            <div className="flex flex-wrap gap-6 justify-center">
+            <div className="flex flex-wrap gap-4 sm:gap-6 justify-center">
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={`skill-${skill.name}-${skillIndex}`}
-                  className={`flex flex-col items-center gap-2 px-4 py-3 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 animate-float ${skill.color}`}
+                  className={`flex flex-col items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 min-w-[120px] sm:min-w-[140px] bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 animate-float ${skill.color}`}
                   style={{ animationDelay: `${(categoryIndex * category.skills.length + skillIndex) * 0.1}s` }}
                 >
                   <div className="text-2xl">

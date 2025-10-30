@@ -55,7 +55,7 @@ export default function Experience({ experiences = [] }) {
   const experienceList = experiences.length > 0 ? experiences : defaultExperiences;
   
   return (
-    <section id="experience" className="relative min-h-screen flex items-center justify-center text-white py-16 px-6 overflow-hidden">
+    <section id="experience" className="relative min-h-[auto] flex items-center justify-center text-white py-12 px-4 sm:py-16 sm:px-6 overflow-hidden">
       {/* 🔥 Animated Dark Gradient Background */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950"
@@ -74,25 +74,14 @@ export default function Experience({ experiences = [] }) {
           Work Experience
         </motion.h2>
 
-        {/* 🔁 Infinite Looping Cards with Enhanced Mapping */}
-        <motion.div
-          className="flex space-x-8 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {/* Duplicate experiences for seamless loop */}
-          {[...experienceList, ...experienceList].map((exp, index) => (
-            <TiltCard 
-              key={index} 
-              exp={exp} 
-              index={index % experienceList.length}
-            />
-          ))}
-        </motion.div>
+        {/* Cards: horizontally scrollable on small screens, static grid on larger screens */}
+        <div className="w-full overflow-x-auto py-4">
+          <div className="flex gap-6 items-stretch">
+            {experienceList.map((exp, index) => (
+              <TiltCard key={index} exp={exp} index={index} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
