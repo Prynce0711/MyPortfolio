@@ -8,6 +8,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Experience from "./components/experience";
 import DP_FB from "./assets/images/DP_FB.jpg";
+import MineImg from "./assets/images/Mine.jpg";
+import BarcieImg from "./assets/images/barcie.jpg";
+import VotingImg from "./assets/images/Voting.jpg";
 import { 
   FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaGithub, FaJava, FaPython 
 } from "react-icons/fa";
@@ -102,18 +105,18 @@ export default function App() {
       desc: "A personal portfolio website showcasing my skills, experience, and projects. Built using React and Tailwind CSS for a modern, responsive design.",
       tech: ["React", "TailwindCSS"],
       icon: <FaReact className="text-blue-500 w-6 h-6" />,
-      image: "/src/assets/images/Mine.jpg",
+  image: MineImg,
       status: "Completed",
       year: "2024"
     },
     {
       id: 2,
       name: "Barcie International Center",
-      link: "#",
+      link: "https://barcie.safehub-lcup.uk/",
       desc: "A web application for Barcie International Center, featuring a blog and content management system. Developed with HTML, CSS, JavaScript, PHP, Node.js, and MySQL.",
       tech: ["Html", "Css", "Javascript", "Php", "Node.js", "MySQL"],
       icon: <FaHtml5 className="text-green-600 w-6 h-6" />,
-      image: "/src/assets/images/barcie.jpg",
+  image: BarcieImg,
       status: "In Progress",
       year: "2024"
     },
@@ -124,7 +127,7 @@ export default function App() {
       desc: "A secure voting system application designed for managing elections and user authentication. Built with Java and MySQL for reliability and efficiency.",
       tech: ["Java", "MySQL"],
       icon: <FaJava className="text-green-600 w-6 h-6" />,
-      image: "/src/assets/images/Voting.jpg",
+  image: VotingImg,
       status: "Completed",
       year: "2023"
     },
