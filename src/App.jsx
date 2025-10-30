@@ -194,6 +194,7 @@ export default function App() {
           brandName={brandName}
           navigationItems={navigationItems}
         />
+       
         
         {/* Portfolio Sections Mapping */}
         {portfolioSections.map((section, index) => {

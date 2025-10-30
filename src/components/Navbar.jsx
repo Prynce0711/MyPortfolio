@@ -47,6 +47,8 @@ export default function Navbar({ brandName, navigationItems }) {
       // lock scroll
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
+      // add class to body to allow other components to hide/show when menu open
+      document.body.classList.add("mobile-nav-open");
       // focus first link
       setTimeout(() => {
         try {
@@ -58,12 +60,16 @@ export default function Navbar({ brandName, navigationItems }) {
       return () => {
         document.removeEventListener("keydown", onKeyDown);
         document.body.style.overflow = prev;
+        document.body.classList.remove("mobile-nav-open");
       };
+    } else {
+      // ensure class is removed when menu closed
+      document.body.classList.remove("mobile-nav-open");
     }
   }, [open]);
 
   return (
-    <nav className="fixed w-full z-50 backdrop-blur-md bg-white/20 shadow-lg p-4 flex justify-between items-center">
+  <nav className="fixed w-full z-50 backdrop-blur-md bg-black/80 md:bg-white/20 shadow-lg p-4 flex justify-between items-center">
       {/* Logo */}
       <motion.h1 
         className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
@@ -125,7 +131,7 @@ export default function Navbar({ brandName, navigationItems }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 bg-black/40 md:hidden"
+              className="fixed inset-0 z-40 bg-black/70 md:hidden"
             />
 
             <motion.aside
@@ -160,7 +166,7 @@ export default function Navbar({ brandName, navigationItems }) {
                     href={typeof item === 'object' ? item.href : `#${item}`}
                     onClick={handleNavClick}
                     ref={index === 0 ? firstLinkRef : null}
-                    className="block px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="block px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   >
                     {typeof item === 'object' ? item.label : item}
                   </a>
