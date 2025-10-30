@@ -1,0 +1,33 @@
+name: Deploy to Vercel (test branch)
+
+on:
+  push:
+    branches: ["test"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Vercel (Preview for branch)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          # Use npx to run the vercel CLI without globally installing it.
+          # For branch deployments (previews) do NOT pass --prod.
+          npx vercel --token "$VERCEL_TOKEN" --confirm --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
