@@ -28,7 +28,7 @@ jobs:
           if [ -z "$VERCEL_TOKEN" ]; then echo "ERROR: VERCEL_TOKEN is not set as a repository secret"; exit 1; fi
           if [ -z "$VERCEL_ORG_ID" ]; then echo "ERROR: VERCEL_ORG_ID is not set as a repository secret"; exit 1; fi
           if [ -z "$VERCEL_PROJECT_ID" ]; then echo "ERROR: VERCEL_PROJECT_ID is not set as a repository secret"; exit 1; fi
-          if [ -z "$VERCEL_GITHUB_TOKEN" ]; then echo "ERROR: GITHUB_TOKEN is not available (ensure Actions permissions are enabled)"; exit 1; fi
+          if [ -z "$VERCEL_GITHUB_TOKEN" ]; then echo "ERROR: VERCEL_GITHUB_TOKEN is not available (ensure Actions permissions are enabled)"; exit 1; fi
 
       - name: Checkout repository
         uses: actions/checkout@v4
