@@ -33,18 +33,19 @@ export default function Hero({ personalInfo }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 px-6 overflow-hidden"
+      className="relative min-h-[70vh] md:min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 px-4 sm:px-6 overflow-hidden"
     >
       {/* Decorative floating circles */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full opacity-30 animate-pulse dark:bg-purple-700"></div>
-      <div className="absolute bottom-20 right-10 w-48 h-48 bg-pink-400 rounded-full opacity-20 animate-pulse dark:bg-indigo-700"></div>
-      <div className="absolute top-1/2 right-20 w-24 h-24 bg-purple-300 rounded-full opacity-20 animate-bounce dark:bg-blue-700"></div>
+      {/* decorative elements hidden on very small screens to save vertical space */}
+      <div className="hidden sm:block absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full opacity-30 animate-pulse dark:bg-purple-700"></div>
+      <div className="hidden sm:block absolute bottom-20 right-10 w-48 h-48 bg-pink-400 rounded-full opacity-20 animate-pulse dark:bg-indigo-700"></div>
+      <div className="hidden md:block absolute top-1/2 right-20 w-24 h-24 bg-purple-300 rounded-full opacity-20 animate-bounce dark:bg-blue-700"></div>
 
-  <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl w-full gap-8 z-10 px-4 sm:px-6">
+      <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl w-full gap-6 z-10 px-2 sm:px-4">
         {/* Circular Image on the left */}
         <div
           ref={imageRef}
-          className={`w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 flex-shrink-0 transition-all duration-1000 ease-out ${
+          className={`w-36 h-36 sm:w-44 sm:h-44 md:w-64 md:h-64 flex-shrink-0 transition-all duration-1000 ease-out ${
             imageVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           }`}
         >
@@ -58,7 +59,7 @@ export default function Hero({ personalInfo }) {
         {/* Text / Card on the right */}
         <div
           ref={textRef}
-          className={`w-full md:w-1/2 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl p-6 md:p-10 text-center md:text-left transition-all duration-1000 ease-out transform ${
+          className={`w-full md:w-1/2 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl p-4 sm:p-6 md:p-10 text-center md:text-left transition-all duration-1000 ease-out transform ${
             textVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           } hover:scale-105`}
         >
@@ -66,13 +67,13 @@ export default function Hero({ personalInfo }) {
             Hi, I'm {personalInfo.name}
           </h1>
 
-          <p className="mb-6 text-gray-700 dark:text-gray-300">
-            {personalInfo.title}   
+          <p className="mb-4 sm:mb-6 text-gray-700 dark:text-gray-300 text-base sm:text-lg">
+            {personalInfo.title}
           </p>
 
           <a
             href="#projects"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-blue-500 transition-all"
+            className="inline-block px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-blue-500 transition-all text-sm sm:text-base"
           >
             View My Work
           </a>
