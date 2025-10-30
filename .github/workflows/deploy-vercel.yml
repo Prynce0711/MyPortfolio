@@ -52,6 +52,12 @@ jobs:
           github-token: ${{ github.token }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          # Disable automatic GitHub commenting and GitHub deployment creation
+          # to avoid permission errors in environments where the Actions token
+          # is restricted (forks, limited repo settings, etc.). Set to true
+          # if you need the action to comment on PRs/commits.
+          github-comment: false
+          github-deployment: false
           # Do not pass --prod so this remains a preview deployment for the branch
           vercel-args: ""
           working-directory: .
